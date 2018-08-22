@@ -1,8 +1,8 @@
-![](https://github.com/RameshAditya/asciify/blob/master/logo.JPG)
+![](https://github.com/RameshAditya/asciify/blob/master/github-resources/logo.JPG)
 # Convert Images into ASCII Art with the power of Python
 
 
-![](https://github.com/RameshAditya/asciify/blob/master/sample.gif)
+![](https://github.com/RameshAditya/asciify/blob/master/github-resources/sample.gif)
 
 ## Contents
 - [What ASCIIFY is](#what-asciify-is)
