@@ -68,6 +68,7 @@ Here's the algorithm -
 
 -------------------------------------------------------------------------------------------------------
 ## How to use ASCIIFY
+- Ensure you have the required dependency "PIL" for Python installed. (pip install pillow)
 - Clone the repo
 - Run the python script, and pass the image path as the parameter
 - The script will print the output in the terminal, and will also write into a file 'img.txt' in the same directory as the python script
