@@ -10,7 +10,7 @@ method resize():
 '''
 def resize(image, new_width=100):
     (old_width, old_height) = image.size
-    aspect_ratio = old_height/old_width
+    aspect_ratio = float(old_height)/float(old_width)
     new_height = int(aspect_ratio * new_width)
     new_dim = (new_width, new_height)
     new_image = image.resize(new_dim)
@@ -70,7 +70,7 @@ def runner(path):
     # Else, to write into a file
     # Note: This text file will be created by default under
     #       the same directory as this python file,
-    #       NOT in the directory from where the image is pulled. 
+    #       NOT in the directory from where the image is pulled.
     f = open('img.txt','w')
     f.write(image)
     f.close()
