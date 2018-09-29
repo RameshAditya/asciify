@@ -37,7 +37,7 @@ method do():
     - does all the work by calling all the above functions
 '''
 def do(image, new_width=100):
-    image = resize(image)
+    image = resize(image,new_width)
     image = grayscalify(image)
 
     pixels = modify(image)
@@ -62,7 +62,7 @@ def runner(path):
         print("Unable to find image in",path)
         #print(e)
         return
-    image = do(image)
+    image = do(image,192)
 
     # To print on console
     print(image)
