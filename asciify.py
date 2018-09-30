@@ -11,11 +11,9 @@ method resize():
 '''
 def resize(image, new_width=100):
     (old_width, old_height) = image.size
-    # print("original size:" + str((old_width, old_height)))
     aspect_ratio = float(old_height)/float(old_width)
     new_height = int(aspect_ratio * new_width)
     new_dim = (new_width, new_height)
-    # print("new size:" + str(new_dim))
     new_image = image.resize(new_dim)
     return new_image
 '''
@@ -57,7 +55,7 @@ method runner():
     - handles exceptions as well
     - provides alternative output options
 '''
-def runner(path,revert_colors = False,pixel_per_line=100):
+def runner(path, revert_colors = False, ascii_char_per_line=100):
     
     if revert_colors:
         global ASCII_CHARS
@@ -71,7 +69,7 @@ def runner(path,revert_colors = False,pixel_per_line=100):
         print("Unable to find image in",path)
         #print(e)
         return
-    image = do(image,pixel_per_line)
+    image = do(image,ascii_char_per_line)
 
     # To print on console
     # print(image)
