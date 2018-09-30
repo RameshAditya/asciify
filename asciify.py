@@ -1,4 +1,5 @@
 from PIL import Image
+from PIL import ImageDraw, ImageFont
 
 ASCII_CHARS = ['.',',',':',';','+','*','?','%','S','#','@']
 ASCII_CHARS = ASCII_CHARS[::-1]
@@ -10,9 +11,11 @@ method resize():
 '''
 def resize(image, new_width=100):
     (old_width, old_height) = image.size
+    # print("original size:" + str((old_width, old_height)))
     aspect_ratio = float(old_height)/float(old_width)
     new_height = int(aspect_ratio * new_width)
     new_dim = (new_width, new_height)
+    # print("new size:" + str(new_dim))
     new_image = image.resize(new_dim)
     return new_image
 '''
@@ -54,7 +57,12 @@ method runner():
     - handles exceptions as well
     - provides alternative output options
 '''
-def runner(path):    
+def runner(path,revert_colors = False,pixel_per_line=100):
+    
+    if revert_colors:
+        global ASCII_CHARS
+        ASCII_CHARS = ASCII_CHARS[::-1]
+
     image = None
     try:
         image = Image.open(path)
@@ -63,10 +71,10 @@ def runner(path):
         print("Unable to find image in",path)
         #print(e)
         return
-    image = do(image,192)
+    image = do(image,pixel_per_line)
 
     # To print on console
-    print(image)
+    # print(image)
 
     # Else, to write into a file
     # Note: This text file will be created by default under
@@ -75,6 +83,43 @@ def runner(path):
     f = open(name + '.txt','w')
     f.write(image)
     f.close()
+
+    create_img(name)
+
+def create_img(name):
+    # weird to open a file right after closing but it was to keep the
+    # logic of the old script working 
+    s=[]
+    f= open(name + ".txt","r")
+    for line in f:
+        s.append(line)
+    f.close()
+
+    xlines = len(s[0])
+    ylines = len(s)
+
+    # must be a monospaced font 
+    font = 'Anonymous.ttf'
+    font_size_to_draw = 12
+
+    # how much space each ascii code takes
+    font_pixel_width = 10
+    font_pixel_height = 10
+
+    image_size_x = (xlines-1)*(font_pixel_width)
+    image_size_y = (ylines)*(font_pixel_height)
+
+    img = Image.new('RGB',(image_size_x,image_size_y) , color = (0, 0, 0))
+    
+    # draw background
+    d = ImageDraw.Draw(img)
+
+    fnt = ImageFont.truetype(font, font_size_to_draw)
+    for y in range(len(s)):
+        for x in range(len(s[y])):
+            d.text((x*font_pixel_width,y*font_pixel_height), s[y][x], font=fnt, fill=(255, 255, 255))
+
+    img.save(name + '_ascii.png')
 
 def get_name_from_path(path):
     import os
