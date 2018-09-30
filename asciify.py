@@ -54,10 +54,11 @@ method runner():
     - handles exceptions as well
     - provides alternative output options
 '''
-def runner(path):
+def runner(path):    
     image = None
     try:
         image = Image.open(path)
+        name = get_name_from_path(path)
     except Exception:
         print("Unable to find image in",path)
         #print(e)
@@ -71,9 +72,15 @@ def runner(path):
     # Note: This text file will be created by default under
     #       the same directory as this python file,
     #       NOT in the directory from where the image is pulled.
-    f = open('img.txt','w')
+    f = open(name + '.txt','w')
     f.write(image)
     f.close()
+
+def get_name_from_path(path):
+    import os
+    name = os.path.basename(path)
+    name = name.split(".")
+    return name[0]
 
 '''
 method main():
