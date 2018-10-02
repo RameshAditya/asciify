@@ -87,6 +87,8 @@ def play():
     - Used asciimatics to overwrite lines at the same place
 '''
 def play(stdscr, cap, playback_speed=1):
+    stdscr.clear()
+
     fps = cap.get(cv2.CAP_PROP_FPS)
     delay = 1 / fps
     delay = delay / playback_speed
