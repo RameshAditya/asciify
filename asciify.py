@@ -1,4 +1,9 @@
+import cv2
+import time
+import utils
+
 from PIL import Image
+from asciimatics.screen import Screen
 
 ASCII_CHARS = ['.',',',':',';','+','*','?','%','S','#','@']
 ASCII_CHARS = ASCII_CHARS[::-1]
@@ -76,6 +81,49 @@ def runner(path):
     f.close()
 
 '''
+def play():
+    - Reads video from VideoCapture object cap
+    - And prints on the console screen provided by asciimatics
+    - Used asciimatics to overwrite lines at the same place
+'''
+def play(stdscr, cap, playback_speed=1):
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    delay = 1 / fps
+    delay = delay / playback_speed
+
+    retv, frame = cap.read()
+    while retv:
+        img = Image.fromarray(frame)
+        ascii_img_row_wise = do(img).split('\n')
+        rows = len(ascii_img_row_wise)
+        
+        # need to print line by line because print_at does not respect '\n'
+        for i in range(0, rows):
+            stdscr.print_at(ascii_img_row_wise[i], 0, i)
+
+        stdscr.refresh()
+        time.sleep(delay)
+
+        retv, frame = cap.read()
+
+'''
+method play_video_wrapper():
+    - loads VideoCapture object and checks if video can be read
+    - accepts video file path and playback_speed (float)
+'''
+def play_video_wrapper(path, playback_speed):
+    cap = cv2.VideoCapture(path)
+
+    if cap.isOpened():
+
+        Screen.wrapper(play, arguments=(
+            cap, playback_speed))
+
+        cap.release()
+    else:
+        print("Could not read video file.")
+
+'''
 method main():
     - reads input from console
     - profit
@@ -83,9 +131,25 @@ method main():
 if __name__ == '__main__':
     import sys
     import urllib.request
-    if sys.argv[1].startswith('http://') or sys.argv[1].startswith('https://'):
-        urllib.request.urlretrieve(sys.argv[1], "asciify.jpg")
-        path = "asciify.jpg"
+
+    if len(sys.argv) < 3:
+        print("Incorrect input format.")
+        print("Syntax 1: python asciify.py -i IMAGE_FILE")
+        print("Syntax 2: python asciify.py -v VIDEO_FILE")
+        print("Syntax 3: python asciify.py -v VIDEO_FILE PLAYBACK_SPEED")
+        sys.exit(-1)
+
+    if sys.argv[1] not in ['-i', '-v']:
+        print("Invalid switch. Use -i for image and -v for video.")
+        sys.exit(-1)
+    
+    path = utils.resolve(sys.argv[2])
+    if sys.argv[1] == '-i':
+        runner(path)
     else:
-        path = sys.argv[1]
-    runner(path)
+        try:
+            playback_speed = float(sys.argv[3]) if len(sys.argv) > 3 else 1
+            play_video_wrapper(path, playback_speed)
+        except ValueError:
+            print("Invalid playback speed:", sys.argv[3])
+            sys.exit(-1)
