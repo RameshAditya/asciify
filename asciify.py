@@ -1,4 +1,6 @@
 from PIL import Image
+import requests
+from io import BytesIO
 
 ASCII_CHARS = ['.',',',':',';','+','*','?','%','S','#','@']
 ASCII_CHARS = ASCII_CHARS[::-1]
@@ -57,10 +59,13 @@ method runner():
 def runner(path):
     image = None
     try:
-        image = Image.open(path)
+        if path.startswith('http://') or path.startswith('https://'):
+            image = Image.open(BytesIO(requests.get(path, allow_redirects=True).content))
+        else:
+            image = Image.open(path)
     except Exception:
         print("Unable to find image in",path)
-        #print(e)
+        # print(e)
         return
     image = do(image)
 
@@ -82,5 +87,8 @@ method main():
 '''
 if __name__ == '__main__':
     import sys
+    if len(sys.argv) < 2:
+        print('Error: Provide image file path or URL')
+        exit(1)
     path = sys.argv[1]
     runner(path)
