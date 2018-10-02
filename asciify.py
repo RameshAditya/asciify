@@ -88,5 +88,4 @@ if __name__ == '__main__':
         path = "asciify.jpg"
     else:
         path = sys.argv[1]
-    path = sys.argv[1]
     runner(path)
