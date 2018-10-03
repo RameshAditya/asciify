@@ -20,6 +20,7 @@ def resize(image, new_width=100):
     new_dim = (new_width, new_height)
     new_image = image.resize(new_dim)
     return new_image
+    
 '''
 method grayscalify():
     - takes an image as a parameter
