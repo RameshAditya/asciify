@@ -1,24 +1,23 @@
 ![](https://github.com/RameshAditya/asciify/blob/master/github-resources/logo.JPG)
-# Convert Images into ASCII Art with the power of Python
+# Конвертация изображений в ASCII Art с помощью Python
 
 
 ![](https://github.com/RameshAditya/asciify/blob/master/github-resources/sample.gif)
 
-## Contents
-- [What ASCIIFY is](#what-asciify-is)
-- [How ASCIIFY works](#how-asciify-works)
-- [How to use ASCIIFY](#how-to-use-asciify)
-- [Future Plans](#future-plans)
-- [Support me](#support-me)
+## Содержание
+- [Что такое ASCIIFY](#%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-asciify)
+- [Как это работает](#%D0%9A%D0%B0%D0%BA-%D1%8D%D1%82%D0%BE-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D0%B5%D1%82)
+- [Как этим пользоваться](#%D0%9A%D0%B0%D0%BA-%D1%8D%D1%82%D0%B8%D0%BC-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%D1%81%D1%8F)
+- [Планы на будущее](#%D0%9F%D0%BB%D0%B0%D0%BD%D1%8B-%D0%BD%D0%B0-%D0%B1%D1%83%D0%B4%D1%83%D1%89%D0%B5%D0%B5)
+- [Поддержать проект](#%D0%9F%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D1%82%D1%8C-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82)
 
-## What ASCIIFY is
-ASCIIFY is a python script that takes in as input an image, and returns a text output that resembles the input image.
-In other words, it replicates an image with certain characters.
+## Что такое ASCIIFY
+ASCIIFY это python скрипт, который принимает изображение и возвращает вам текст, напоминающий входную картинку. Говоря иначе, он конвертирует картинку в текст.
 
-For example, when the following image of Octocat - 
+Например, при использование изображения Octocat — 
 ![](https://github.com/RameshAditya/asciify/blob/master/octocat.png)
 
-is passed as a parameter into ASCIIFY, the following output is observed -
+получается следующий ASCII Art —
 
 ```
 ....................................................................................................
@@ -55,31 +54,31 @@ is passed as a parameter into ASCIIFY, the following output is observed -
 ....................................................................................................
 ```
 -------------------------------------------------------------------------------------------------------
-## How ASCIIFY works
-ASCIIFY works in a rather simple and intuitive way.
-Here's the algorithm -
-- Resize the image to a standard dimension, while maintaining aspect ratio
-- Convert to grayscale (the reason for doing so is because characters are replaced based on their intensity)
-- Create list of special characters to replace pixels with
-- Classify and divide pixels into buckets or groups, based on their intensity
-- Replace all pixels in a bucket with the corresponding special character
-- Print the text into terminal or write into a file
+## Как это работает
+ASCIIFY достаточно прост.
+Алгоритм таков:
+- Подогонать размер изображения под стандартное, не изменяя соотношения сторон
+- Перевести изображение в оттенки серого (так как мы будем менять пиксели на символы в зависимости от их интенсивности)
+- Создать список специальных символов, на которые мы будет заменять пиксели
+- Классифицировать и поделить пиксели на группы, в зависимости от их интенсивности
+- Заменить все пиксели в группе выбранным символом
+- Вывести результат в терминал или файл
 - Profit!
 
 -------------------------------------------------------------------------------------------------------
-## How to use ASCIIFY
-- Ensure you have the required dependency "PIL" for Python installed. (pip install pillow)
-- Clone the repo
-- Run the python script, and pass the image path as the parameter
-- The script will print the output in the terminal, and will also write into a file 'img.txt' in the same directory as the python script
+## Как этим пользоваться
+- Убедитесь, что удовлетворены все зависимости (pip install pillow)
+- Склонируйте репозиторий
+- Запустите скрипт и передайте путь к изображению в качестве параметра
+- Скрипт выведет результат в терминал, а также запишет его в файл 'img.txt', находящийся в той же директории, что и сам скрипт
 - Profit!
 
 -------------------------------------------------------------------------------------------------------
-## Future Plans
-- Alternatively support colored outputs by printing the text onto an image
+## Планы на будущее
+- Добавить поддержку цвета, выводя текст поверх изображения
 
 -------------------------------------------------------------------------------------------------------
-## Support Me
-If you liked this, leave a star! :star:
+## Поддержать проект
+Если вам понравился проект, добавьте его в закладки :star:
 
-If you liked this and also liked my other work, be sure to follow me for more! :slightly_smiling_face:
+Если вам понравились и другие мои работы, не забудьте зафолловить меня! :slightly_smiling_face:
