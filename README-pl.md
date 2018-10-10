@@ -5,9 +5,9 @@
 
 ## Spis treści
 - [Czym jest ASCIIFY](#czym-jest-asciify)
-- [Jak działa ASCIIFY](#jak-dziala-asciify)
-- [Jak korzystać z ASCIIFY](#jak-korzystac-z-asciify)
-- [Plany na przyszłość](#plany-na-przyszlosc)
+- [Jak działa ASCIIFY](#jak-działa-asciify)
+- [Jak korzystać z ASCIIFY](#jak-korzystać-z-asciify)
+- [Plany na przyszłość](#plany-na-przyszłość)
 - [Wesprzyj mnie](#wesprzyj-mnie)
 
 ## Czym jest ASCIIFY
