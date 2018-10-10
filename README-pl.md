@@ -78,6 +78,6 @@ Tak wygląda algorytm -
 
 -------------------------------------------------------------------------------------------------------
 ## Wesprzyj mnie
-Jeśli Ci się to podobało, zostaw gwiazdkę! :star:
+Jeśli Ci się podobało, zostaw gwiazdkę! :star:
 
-Jeśli Ci podobało Ci się to, a także inne moje materiały, upewnij się, że śledzisz mnie po więcej! :slightly_smiling_face:
+Jeśli podobało Ci się to, a także inne moje materiały, upewnij się, że obserwujesz mój profil! :slightly_smiling_face:
