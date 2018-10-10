@@ -5,22 +5,20 @@
 ![](https://github.com/RameshAditya/asciify/blob/master/github-resources/sample.gif)
 
 ## Περιεχόμενα
-- [Τι είναι το ASCIIFY](#what-asciify-is)
-- [Πως δουλεύει το ASCIIFY](#how-asciify-works)
-- [Πως να χρησιμοποιήσετε το ASCIIFY](#how-to-use-asciify)
-- [Μελλοντικά σχέδια](#future-plans)
-- [Υποστηρίξτε με](#support-me)
+- [Τι είναι το ASCIIFY](#τι-είναι-το-asciify)
+- [Πως δουλεύει το ASCIIFY](#πως-δουλεύει-το-asciify)
+- [Πως να χρησιμοποιήσετε το ASCIIFY](#πως-να-χρησιμοποιήσετε-το-asciify)
+- [Μελλοντικά σχέδια](#μελλοντικά-σχέδια)
+- [Υποστηρίξτε με](#υποστηρίξτε-με)
 
 ## Τι είναι το ASCIIFY
-ASCIIFY is a python script that takes in as input an image, and returns a text output that resembles the input image.
-In other words, it replicates an image with certain characters.
 Το ASCIIFY είναι ένα python script το οποίο παίρνει ώς είσοδο μια εικόνα και επιστρέφει ως έξοδο κείμενο το οποίο μοιάζει
 με την εικόνα εισόδου. Με άλλα λόγια, αναπαράγει την εικόνα με συγκεκριμένους χαρακτήρες.
 
 Για παράδειγμα, όταν η παρακάτω εικόνα της Octocat -
 ![](https://github.com/RameshAditya/asciify/blob/master/octocat.png)
 
-εισάγεται ώς παράμετρος στο ASCIIFY, τότε παρατηρείται η ακόλουθη είσοδος -
+εισάγεται ώς παράμετρος στο ASCIIFY, τότε παρατηρείται η ακόλουθη έξοδος-
 
 ```
 ....................................................................................................
@@ -70,7 +68,7 @@ In other words, it replicates an image with certain characters.
 
 -------------------------------------------------------------------------------------------------------
 ## Πως να χρησιμοποιήσετε το ASCIIFY 
-- Σιγουρέψτε οτι έχετε το απαραίτητο dependency "PIL" για την Python εγκατεστημένο. (pip install pillow)
+- Σιγουρευτείτε οτι έχετε το απαραίτητο dependency "PIL" για την Python εγκατεστημένο. (pip install pillow)
 - Κάντε clone to repo
 - Τρέξτε το python script και εισάγετε το path της εικόνας ώς παράμετρο
 - Το script θα εκτυπώσει την έξοδο στο terminal και επίσης θα την γράψει σε ένα αρχείο 'img.txt' στον ίδιο φάκελο με το python script
@@ -84,4 +82,4 @@ In other words, it replicates an image with certain characters.
 ## Υποστηρίξτε με 
 Αν σας άρεσε κάντε star! :star:
 
-Αν σας άρεσε αυτό και επίσης σας άρεσε η υπόλοιπή μου δουλειά, μη ξεχάσετε να κάνετε follow για περισσότερα! :slightly_smiling_face:
+Αν σας άρεσε αυτό και επίσης σας άρεσε και η υπόλοιπή μου δουλειά, μη ξεχάσετε να κάνετε follow για περισσότερα! :slightly_smiling_face:
