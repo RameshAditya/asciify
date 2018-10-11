@@ -12,11 +12,11 @@
 - [応援して](#応援して)
 
 ## ASCIIFYとは
-ASCIIFY is a python script that takes in as input an image, and returns a text output that resembles the input image.
-ASCIIFYは、画像を受け取って、元の画像に似た文字列を出力するPythonスクリプトです。
 
-In other words, it replicates an image with certain characters.
-言い換えると、画像を文字によって再現します。(アスキーアート)
+ASCIIFYは、画像を受け取ってり元の画像に似た文字列を出力するPythonスクリプトです。
+
+
+画像を文字によって再現できます。(アスキーアート)
 
 例えば、下のOctocatの画像を引数にすると-
 ![](https://github.com/RameshAditya/asciify/blob/master/octocat.png)
@@ -63,10 +63,10 @@ ASCIIFY の仕組みは単純明快です。
 アルゴリズムは以下の通り。 -
 - アスペクト比を保ったまま、画像を一定の大きさに変更
 - グレースケールに変換(明暗を元に文字に置き換えるため)
-- ピクセルを置き換えるための特殊文字のリストを作成
+- ピクセルを置き換えるための、特殊文字のリストを作成
 - ピクセルを明暗に基づいて分類
 - 全てのピクセルを対応する特殊文字で置き換え
-- ターミナル、あるいはファイルに出力
+- ターミナルとファイルに出力
 - 何かに使う!
 
 -------------------------------------------------------------------------------------------------------
