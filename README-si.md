@@ -2,11 +2,11 @@
 [](https://github.com/RameshAditya/asciify/blob/master/github-resources/sample.gif)
 ## අන්තර්ගතය
 
-- ASCIIFY යනු කුමක් ද?
-- ASCIIFY ක්‍රියාකරන්නේ කෙසේ ද?
-- ASCIIFY භාවිත කරන්නේ කෙසේ ද?
-- අනාගත සැලසුම්
-- මට සහය වන්න 
+- [ASCIIFY යනු කුමක් ද?](https://github.com/pavinduLakshan/asciify/blob/master/README-si.md#asciify-%E0%B6%BA%E0%B6%B1%E0%B7%94-%E0%B6%9A%E0%B7%94%E0%B6%B8%E0%B6%9A%E0%B7%8A-%E0%B6%AF)
+- [ASCIIFY ක්‍රියාකරන්නේ කෙසේ ද?](https://github.com/pavinduLakshan/asciify/blob/master/README-si.md#asciify-%E0%B6%9A%E0%B7%8A%E0%B6%BB%E0%B7%92%E0%B6%BA%E0%B7%8F%E0%B6%9A%E0%B6%BB%E0%B6%B1%E0%B7%8A%E0%B6%B1%E0%B7%9A-%E0%B6%9A%E0%B7%99%E0%B7%83%E0%B7%9A-%E0%B6%AF)
+- [ASCIIFY භාවිත කරන්නේ කෙසේ ද?](https://github.com/pavinduLakshan/asciify/blob/master/README-si.md#asciify-%E0%B6%B7%E0%B7%8F%E0%B7%80%E0%B7%92%E0%B6%AD-%E0%B6%9A%E0%B6%BB%E0%B6%B1%E0%B7%8A%E0%B6%B1%E0%B7%9A-%E0%B6%9A%E0%B7%99%E0%B7%83%E0%B7%9A-%E0%B6%AF)
+- [අනාගත සැලසුම්](https://github.com/pavinduLakshan/asciify/blob/master/README-si.md#%E0%B6%85%E0%B6%B1%E0%B7%8F%E0%B6%9C%E0%B6%AD-%E0%B7%83%E0%B7%90%E0%B6%BD%E0%B7%83%E0%B7%94%E0%B6%B8%E0%B7%8A)
+- [මට සහය වන්න](https://github.com/pavinduLakshan/asciify/blob/master/README-si.md#%E0%B6%B8%E0%B6%A7-%E0%B7%83%E0%B7%84%E0%B6%BA-%E0%B7%80%E0%B6%B1%E0%B7%8A%E0%B6%B1) 
 
 ## ASCIIFY යනු කුමක් ද?
 
