@@ -1,4 +1,5 @@
-# ජායාරූප Python මඟින් කලාත්මක ASCII අක්ෂර සමූහ බවට හැරවීම
+![](https://github.com/RameshAditya/asciify/blob/master/github-resources/logo.JPG)
+# Python මඟින් ජායාරූප , කලාත්මක ASCII අක්ෂර සමූහ බවට හැරවීම
 [](https://github.com/RameshAditya/asciify/blob/master/github-resources/sample.gif)
 ## අන්තර්ගතය
 
