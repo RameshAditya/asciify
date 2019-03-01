@@ -37,7 +37,7 @@ method do():
     - does all the work by calling all the above functions
 '''
 def do(image, new_width=100):
-    image = resize(image)
+    image = resize(image, new_width)
     image = grayscalify(image)
 
     pixels = modify(image)
@@ -54,7 +54,7 @@ method runner():
     - handles exceptions as well
     - provides alternative output options
 '''
-def runner(path):
+def runner(path, width):
     image = None
     try:
         image = Image.open(path)
@@ -62,7 +62,7 @@ def runner(path):
         print("Unable to find image in",path)
         #print(e)
         return
-    image = do(image)
+    image = do(image, width)
 
     # To print on console
     print(image)
@@ -88,4 +88,10 @@ if __name__ == '__main__':
         path = "asciify.jpg"
     else:
         path = sys.argv[1]
-    runner(path)
+
+    if len(sys.argv) >= 3:
+        width = int(sys.argv[2])
+    else:
+        width = 100
+
+    runner(path, width)
