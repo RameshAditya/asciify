@@ -2,3 +2,5 @@ ASCIIFY:
   SRC_IMG_PATH: octocat.png  # it can from the Online, for example: http://p1.pstatp.com/large/pgc-image/c3b90be2c32749d3b744f1e322da8738
   OUTPUT_PATH: temp/img.txt
   NEW_WIDTH: 200  # Height will be determined by width (equivalent scaling)
+
+  PRINT_CONSOLE: False  # print console or not

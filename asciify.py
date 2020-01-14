@@ -2,9 +2,12 @@ from PIL import Image
 import os
 from pathlib import Path
 import yaml  # pip install pyyaml
+import urllib.request
 
 ASCII_CHARS = ['.', ',', ':', ';', '+', '*', '?', '%', 'S', '#', '@']
 ASCII_CHARS = ASCII_CHARS[::-1]
+
+PRINT_CONSOLE_FLAG: bool
 
 '''
 method resize():
@@ -14,7 +17,6 @@ method resize():
 
 
 def resize(image, new_width):
-
     old_width, old_height = image.size
     aspect_ratio = float(old_height) / float(old_width)
     new_height = int(aspect_ratio * new_width)
@@ -81,8 +83,8 @@ def runner(src_img_path: Path, output_path: Path, new_width: int):
         return
     image = do(image, new_width)
 
-    # To print on console
-    print(image)
+    if PRINT_CONSOLE_FLAG:
+        print(image)
 
     # Else, to write into a file
     # Note: This text file will be created by default under
@@ -100,8 +102,8 @@ method main():
 '''
 
 
-def load_setting_from_config() -> tuple:
-    with open('config/config.yaml', 'r', encoding='utf-8') as f:
+def load_setting_from_config(config_path: str) -> tuple:
+    with open(config_path, 'r', encoding='utf-8') as f:
         config = yaml.load(f.read(), Loader=yaml.SafeLoader)
     input_dict = config.get(Path(__file__).stem.upper())
     src_img_path = input_dict['SRC_IMG_PATH']
@@ -113,10 +115,25 @@ def load_setting_from_config() -> tuple:
         input_dict['SRC_IMG_PATH'] = img_path
     else:
         input_dict['SRC_IMG_PATH'] = Path(input_dict['SRC_IMG_PATH'])
+    global PRINT_CONSOLE_FLAG
+    PRINT_CONSOLE_FLAG = input_dict['PRINT_CONSOLE']
     return input_dict['SRC_IMG_PATH'], Path(input_dict['OUTPUT_PATH']), input_dict.get('NEW_WIDTH', 100)
 
 
 if __name__ == '__main__':
-    import urllib.request
-    _src_img_path, _output_path, _new_width = load_setting_from_config()
+    from argparse import ArgumentParser, RawTextHelpFormatter
+
+    script_description = '\n'.join([desc for desc in
+                                    ['\n',
+                                     f'python asciify.py --help',
+                                     f'python asciify.py',
+                                     f'python asciify.py [CONFIG.YAML]',
+                                     f'\tpython asciify.py -c config/config.yaml',
+                                     ]])
+    arg_parser = ArgumentParser(description='Convert Images into ASCII Art',
+                                usage=script_description, formatter_class=RawTextHelpFormatter)
+
+    arg_parser.add_argument('-c', '--config', dest='config', default='config/config.yaml', help="input the path of ``config.yaml``")
+    g_args = arg_parser.parse_args()
+    _src_img_path, _output_path, _new_width = load_setting_from_config(g_args.config)
     runner(_src_img_path, _output_path, _new_width)
