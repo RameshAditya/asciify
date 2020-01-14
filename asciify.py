@@ -1,4 +1,7 @@
 from PIL import Image
+import os
+from pathlib import Path
+import yaml  # pip install pyyaml
 
 ASCII_CHARS = ['.', ',', ':', ';', '+', '*', '?', '%', 'S', '#', '@']
 ASCII_CHARS = ASCII_CHARS[::-1]
@@ -10,7 +13,8 @@ method resize():
 '''
 
 
-def resize(image, new_width=100):
+def resize(image, new_width):
+
     old_width, old_height = image.size
     aspect_ratio = float(old_height) / float(old_width)
     new_height = int(aspect_ratio * new_width)
@@ -48,8 +52,8 @@ method do():
 '''
 
 
-def do(image, new_width=100):
-    image = resize(image)
+def do(image, new_width):
+    image = resize(image, new_width)
     image = gray_scarify(image)
 
     pixels = modify(image)
@@ -69,13 +73,13 @@ method runner():
 '''
 
 
-def runner(path):
+def runner(src_img_path: Path, output_path: Path, new_width: int):
     try:
-        image = Image.open(path)
+        image = Image.open(src_img_path)
     except FileNotFoundError as e:
         print(f"Unable to find image in. {str(e)}")
         return
-    image = do(image)
+    image = do(image, new_width)
 
     # To print on console
     print(image)
@@ -84,9 +88,9 @@ def runner(path):
     # Note: This text file will be created by default under
     #       the same directory as this python file,
     #       NOT in the directory from where the image is pulled.
-    f = open('img.txt', 'w')
-    f.write(image)
-    f.close()
+    with open(str(output_path), 'w') as f:
+        f.write(image)
+    os.startfile(output_path)
 
 
 '''
@@ -94,13 +98,25 @@ method main():
     - reads input from console
     - profit
 '''
-if __name__ == '__main__':
-    import sys
-    import urllib.request
 
-    if sys.argv[1].startswith('http://') or sys.argv[1].startswith('https://'):
-        urllib.request.urlretrieve(sys.argv[1], "asciify.jpg")
-        input_image_path = "asciify.jpg"
+
+def load_setting_from_config() -> tuple:
+    with open('config/config.yaml', 'r', encoding='utf-8') as f:
+        config = yaml.load(f.read(), Loader=yaml.SafeLoader)
+    input_dict = config.get(Path(__file__).stem.upper())
+    src_img_path = input_dict['SRC_IMG_PATH']
+    download_dir = Path('./temp')
+    os.makedirs(download_dir, exist_ok=True)
+    if src_img_path.startswith('http://') or src_img_path.startswith('https://'):
+        img_path = download_dir.joinpath(Path(src_img_path).name)
+        urllib.request.urlretrieve(src_img_path, img_path)
+        input_dict['SRC_IMG_PATH'] = img_path
     else:
-        input_image_path = sys.argv[1]
-    runner(input_image_path)
+        input_dict['SRC_IMG_PATH'] = Path(input_dict['SRC_IMG_PATH'])
+    return input_dict['SRC_IMG_PATH'], Path(input_dict['OUTPUT_PATH']), input_dict.get('NEW_WIDTH', 100)
+
+
+if __name__ == '__main__':
+    import urllib.request
+    _src_img_path, _output_path, _new_width = load_setting_from_config()
+    runner(_src_img_path, _output_path, _new_width)
