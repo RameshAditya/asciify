@@ -1,15 +1,13 @@
 from PIL import Image
 import os
+from math import ceil
 from pathlib import Path
 import yaml  # pip install pyyaml
 import urllib.request
 
-ASCII_CHARS = ['.', ',', ':', ';', '+', '*', '?', '%', 'S', '#', '@',
-               'A', 'B', 'Z', 'R']
-ASCII_CHARS = ASCII_CHARS[::-1]
+ASCII_CHARS: list
 
 PRINT_CONSOLE_FLAG: bool
-BUCKETS: int
 
 '''
 method resize():
@@ -44,9 +42,10 @@ method modify():
 '''
 
 
-def modify(image, buckets):
+def modify(image):
     initial_pixels = list(image.getdata())
-    new_pixels = [ASCII_CHARS[(pixel_value // buckets) % len(ASCII_CHARS)] for pixel_value in initial_pixels]
+    buckets = ceil(255 / len(ASCII_CHARS))
+    new_pixels = [ASCII_CHARS[(pixel_value // buckets)] for pixel_value in initial_pixels]
     return ''.join(new_pixels)
 
 
@@ -60,7 +59,7 @@ def do(image, new_width):
     image = resize(image, new_width)
     image = gray_scarify(image)
 
-    pixels = modify(image, BUCKETS)
+    pixels = modify(image)
     len_pixels = len(pixels)
 
     # Construct the image from the character list
@@ -117,9 +116,9 @@ def load_setting_from_config(config_path: str) -> tuple:
         input_dict['SRC_IMG_PATH'] = img_path
     else:
         input_dict['SRC_IMG_PATH'] = Path(input_dict['SRC_IMG_PATH'])
-    global PRINT_CONSOLE_FLAG, BUCKETS
+    global PRINT_CONSOLE_FLAG, ASCII_CHARS
     PRINT_CONSOLE_FLAG = input_dict['PRINT_CONSOLE']
-    BUCKETS = input_dict['BUCKETS']
+    ASCII_CHARS = eval(input_dict['ASCII_CHARS'])
     return input_dict['SRC_IMG_PATH'], Path(input_dict['OUTPUT_PATH']), input_dict.get('NEW_WIDTH', 100)
 
 
