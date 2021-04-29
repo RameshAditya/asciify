@@ -70,10 +70,9 @@ def runner(path):
     # Else, to write into a file
     # Note: This text file will be created by default under
     #       the same directory as this python file,
-    #       NOT in the directory from where the image is pulled.
-    f = open('img.txt','w')
-    f.write(image)
-    f.close()
+    #       NOT in the directory from where the image is pulled
+    with open ('img.txt','w') as f:
+        f.write(image)
 
 '''
 method main():
