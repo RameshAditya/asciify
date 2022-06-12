@@ -91,13 +91,24 @@ method main():
 if __name__ == '__main__':
     import sys
     import urllib.request
+    import urllib.error
     import os
+    
+    # No arguments given
+    if len(sys.argv) == 1:
+        print("Relative/absolute path or URL of image must be provided")
+        print("usage: python asciify.py <image> [save_location]")
+        sys.exit()
     
     # Find name of image file
     img_name = sys.argv[1][sys.argv[1].rfind("/") + 1:sys.argv[1].rfind(".")]
     
     if sys.argv[1].startswith('http://') or sys.argv[1].startswith('https://'):
-        urllib.request.urlretrieve(sys.argv[1], img_name + ".jpg")
+        try:
+            urllib.request.urlretrieve(sys.argv[1], img_name + ".jpg")
+        except urllib.error.HTTPError:
+            print("Invalid URL:", sys.argv[1])
+            sys.exit()
         img_path = img_name + ".jpg"
     else:
         img_path = sys.argv[1]
