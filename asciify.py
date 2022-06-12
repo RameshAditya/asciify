@@ -71,8 +71,17 @@ def runner(img_path, save_path):
     # Note: This text file will be created by default under
     #       the same directory as this python file,
     #       NOT in the directory from where the image is pulled.
-    with open(save_path, 'w') as f:
-        f.write(image)
+    try:
+        with open(save_path, 'w') as f:
+            f.write(image)
+    except FileNotFoundError:
+        print(f"\nNo such directory to save output to: {save_path}")
+        print("Check for typos/mistakes or create the directories beforehand")
+        return
+    except PermissionError:
+        print(f"\nPermission error when saving output to {save_path}")
+        print("Ensure that sufficient permissions are given, or that a folder does not have the same name")
+        return
 
 '''
 method main():
