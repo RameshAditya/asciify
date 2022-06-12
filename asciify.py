@@ -54,12 +54,12 @@ method runner():
     - handles exceptions as well
     - provides alternative output options
 '''
-def runner(path):
+def runner(img_path, save_path):
     image = None
     try:
-        image = Image.open(path)
+        image = Image.open(img_path)
     except Exception:
-        print("Unable to find image in",path)
+        print("Unable to find image in", img_path)
         #print(e)
         return
     image = do(image)
@@ -71,9 +71,8 @@ def runner(path):
     # Note: This text file will be created by default under
     #       the same directory as this python file,
     #       NOT in the directory from where the image is pulled.
-    f = open('img.txt','w')
-    f.write(image)
-    f.close()
+    with open(save_path, 'w') as f:
+        f.write(image)
 
 '''
 method main():
@@ -83,9 +82,23 @@ method main():
 if __name__ == '__main__':
     import sys
     import urllib.request
+    import os
+    
+    # Find name of image file
+    img_name = sys.argv[1][sys.argv[1].rfind("/") + 1:sys.argv[1].rfind(".")]
+    
     if sys.argv[1].startswith('http://') or sys.argv[1].startswith('https://'):
-        urllib.request.urlretrieve(sys.argv[1], "asciify.jpg")
-        path = "asciify.jpg"
+        urllib.request.urlretrieve(sys.argv[1], img_name + ".jpg")
+        img_path = img_name + ".jpg"
     else:
-        path = sys.argv[1]
-    runner(path)
+        img_path = sys.argv[1]
+
+    if len(sys.argv) > 2:
+        if sys.argv[2].endswith(".txt"):
+            save_path = sys.argv[2]
+        else:
+            save_path = sys.argv[2] + os.path.sep + img_name + "-asciified.txt"
+    else:
+        save_path = img_name + "-asciified.txt"
+
+    runner(img_path, save_path)
