@@ -47,15 +47,7 @@ def colorize(colorful_image, intensity_characters):
     for i, character in zip(initial_pixels,intensity_characters):
         new_character = f"\033[38;2;{i[0]};{i[1]};{i[2]}m{character}\033[0m"
         colorful_pixels.append(new_character)
-    # print(initial_pixels[0][0], initial_pixels[0][1], initial_pixels[0][2] )
-    # print("initial pixels" +str(len(initial_pixels)))
     return ''.join(colorful_pixels)
-
-
-    # colors from the initial pixels
-    # loop through the new_pixels from the modify function and colorize them through rich
-    # return the new colorized symbols
-
 
 
 '''
@@ -68,14 +60,20 @@ def do(image, new_width=100):
     image = grayscalify(image)
 
     pixels = modify(image)
+    print(pixels)
     pretty_pixels = colorize(full_color,pixels)
     print(pretty_pixels)
-    len_pixels = len(pretty_pixels)
+    len_pretty_pixels = len(pretty_pixels)
+    len_pixels = len(pixels)
 
     # Construct the image from the character list
-    new_image = [pretty_pixels[index:index+new_width] for index in range(0, len_pixels, new_width)]
+    new_image = [pretty_pixels[index:index+new_width] for index in range(0, len_pretty_pixels, new_width)]
 
-    return '\n'.join(new_image)
+    original_image = [pixels[index:index+new_width] for index in range(0, len_pixels, new_width)]
+
+    print ('\n'.join(new_image))
+    return ( '\n'.join(original_image))
+
 
 '''
 method runner():
