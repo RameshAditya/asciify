@@ -70,13 +70,22 @@ Here's the algorithm -
 ## How to use ASCIIFY
 - Ensure you have the required dependency "PIL" for Python installed. (pip install pillow)
 - Clone the repo
-- Run the python script, and pass the image path as the parameter
+- Run the python script, and pass the image path as the parameter:
+    - For the Black and White version run: python3 asciify.py file_name
+    - For the Colour version run: python3 asciify_color.py file_name
 - The script will print the output in the terminal, and will also write into a file 'img.txt' in the same directory as the python script
 - Profit!
 
 -------------------------------------------------------------------------------------------------------
 ## Future Plans
 - Alternatively support colored outputs by printing the text onto an image
+
+
+-------------------------------------------------------------------------------------------------------
+## Sources
+
+- Pillow <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=getdata#PIL.Image.Image.getdata>
+- Stack Overflow <https://stackoverflow.com/questions/287871/how-do-i-print-colored-text-to-the-terminal>
 
 -------------------------------------------------------------------------------------------------------
 ## Support Me
