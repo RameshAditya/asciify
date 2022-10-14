@@ -1,4 +1,5 @@
 from PIL import Image
+import copy
 
 ASCII_CHARS = ['.',',',':',';','+','*','?','%','S','#','@']
 ASCII_CHARS = ASCII_CHARS[::-1]
@@ -15,6 +16,7 @@ def resize(image, new_width=100):
     new_dim = (new_width, new_height)
     new_image = image.resize(new_dim)
     return new_image
+
 '''
 method grayscalify():
     - takes an image as a parameter
@@ -32,21 +34,44 @@ def modify(image, buckets=25):
     new_pixels = [ASCII_CHARS[pixel_value//buckets] for pixel_value in initial_pixels]
     return ''.join(new_pixels)
 
+
+'''
+method colorize(): 
+    - adds colors to the characters from the modify method. The initial string of pixels in the 
+    modify method (which creates an array of characters) is the same length as the pixel rgb color array. We for loop 
+    through the modify method's character array and assign those characters to colors from the original image, 
+    and then append them to seperate lines 100 characters long to print later.
+'''
+def colorize(colorful_image, intensity_characters):
+    initial_pixels = list(colorful_image.getdata())
+    colorful_pixels = []
+    temp_line = []
+    for i, character in zip(initial_pixels,intensity_characters):
+        new_character = f"\033[38;2;{i[0]};{i[1]};{i[2]}m{character}\033[0m"
+        temp_line.append(new_character)
+        if len(temp_line) > 99:
+            temp_line_str = ''.join(temp_line)
+            colorful_pixels.append(temp_line_str)
+            temp_line = []
+    return colorful_pixels
+
+
 '''
 method do():
     - does all the work by calling all the above functions
 '''
-def do(image, new_width=100):
+def do(image):
     image = resize(image)
-    image = grayscalify(image)
+    full_color = copy.deepcopy(image)
+    image_greyscale = grayscalify(image)
 
-    pixels = modify(image)
-    len_pixels = len(pixels)
+    pixels = modify(image_greyscale)
+    colorful_pixels = colorize(full_color,pixels)
 
-    # Construct the image from the character list
-    new_image = [pixels[index:index+new_width] for index in range(0, len_pixels, new_width)]
+    # Construct the image from the line list
+    new_image = '\n'.join(colorful_pixels)
 
-    return '\n'.join(new_image)
+    return new_image
 
 '''
 method runner():
@@ -71,7 +96,7 @@ def runner(path):
     # Note: This text file will be created by default under
     #       the same directory as this python file,
     #       NOT in the directory from where the image is pulled.
-    f = open('img.txt','w')
+    f = open('img_color.txt','w')
     f.write(image)
     f.close()
 

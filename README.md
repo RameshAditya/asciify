@@ -78,6 +78,13 @@ Here's the algorithm -
 ## Future Plans
 - Alternatively support colored outputs by printing the text onto an image
 
+
+-------------------------------------------------------------------------------------------------------
+## Color Output Sources
+
+- Pillow <https://pillow.readthedocs.io/en/stable/reference/Image.html?highlight=getdata#PIL.Image.Image.getdata>
+- Stack Overflow <https://stackoverflow.com/questions/287871/how-do-i-print-colored-text-to-the-terminal>
+
 -------------------------------------------------------------------------------------------------------
 ## Support Me
 If you liked this, leave a star! :star:
