@@ -43,11 +43,15 @@ method colorize():
 def colorize(colorful_image, intensity_characters):
     initial_pixels = list(colorful_image.getdata())
     colorful_pixels = []
-
+    temp_line = []
     for i, character in zip(initial_pixels,intensity_characters):
         new_character = f"\033[38;2;{i[0]};{i[1]};{i[2]}m{character}\033[0m"
-        colorful_pixels.append(new_character)
-    return ''.join(colorful_pixels)
+        temp_line.append(new_character)
+        if len(temp_line) > 99:
+            temp_line_str = ''.join(temp_line)
+            colorful_pixels.append(temp_line_str)
+            temp_line = []
+    return colorful_pixels
 
 
 '''
@@ -67,11 +71,12 @@ def do(image, new_width=100):
     len_pixels = len(pixels)
 
     # Construct the image from the character list
-    new_image = [pretty_pixels[index:index+new_width] for index in range(0, len_pretty_pixels, new_width)]
-
+    # new_image = [pretty_pixels[index:index+new_width] for index in range(0, len_pretty_pixels, new_width)]
+    new_image = '\n'.join(pretty_pixels)
+    print(new_image)
     original_image = [pixels[index:index+new_width] for index in range(0, len_pixels, new_width)]
 
-    print ('\n'.join(new_image))
+    # print ('\n'.join(new_image))
     return ( '\n'.join(original_image))
 
 
